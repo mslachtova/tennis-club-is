@@ -12,6 +12,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
  * Persistence configuration
+ *
  * @author Monika Slachtova
  */
 @Configuration
