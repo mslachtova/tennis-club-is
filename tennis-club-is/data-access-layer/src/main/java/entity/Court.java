@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -27,6 +29,9 @@ public class Court {
     @ManyToOne
     @NotNull
     private CourtSurface courtSurface;
+
+    @OneToMany(mappedBy="reservation")
+    private List<Reservation> reservations;
 
     public Court() {
     }
@@ -53,6 +58,19 @@ public class Court {
 
     public void setCourtSurface(CourtSurface courtSurface) {
         this.courtSurface = courtSurface;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public void addReservation(Reservation reservation) {
+        reservations.add(reservation);
+        reservation.setCourt(this);
     }
 
     @Override

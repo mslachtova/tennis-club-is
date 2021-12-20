@@ -30,6 +30,9 @@ public class User {
     @NotNull
     private String name;
 
+    @OneToMany(mappedBy="reservation")
+    private List<Reservation> reservations;
+
     public User() {
     }
 
@@ -55,6 +58,19 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public void addReservation(Reservation reservation) {
+        reservations.add(reservation);
+        reservation.setUser(this);
     }
 
     @Override
