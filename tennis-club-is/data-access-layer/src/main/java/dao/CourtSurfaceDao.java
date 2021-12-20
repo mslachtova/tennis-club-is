@@ -5,7 +5,7 @@ import entity.CourtSurface;
 import java.util.List;
 
 /**
- * Interface for court surface data access object.
+ * Interface for court surface data access object
  *
  * @author Monika Slachtova
  */
