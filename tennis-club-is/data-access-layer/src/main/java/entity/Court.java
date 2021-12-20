@@ -1,0 +1,70 @@
+package entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
+
+/**
+ * Class represents a tennis court
+ *
+ * @author Monika Slachtova
+ */
+@Entity
+public class Court {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(unique = true)
+    @NotNull
+    private int courtNumber;
+
+    @ManyToOne
+    @NotNull
+    private CourtSurface courtSurface;
+
+    public Court() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getCourtNumber() {
+        return courtNumber;
+    }
+
+    public void setCourtNumber(int courtNumber) {
+        this.courtNumber = courtNumber;
+    }
+
+    public CourtSurface getCourtSurface() {
+        return courtSurface;
+    }
+
+    public void setCourtSurface(CourtSurface courtSurface) {
+        this.courtSurface = courtSurface;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Court)) return false;
+        Court court = (Court) o;
+        return getCourtNumber() == court.getCourtNumber();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCourtNumber());
+    }
+}
