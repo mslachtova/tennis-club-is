@@ -18,6 +18,8 @@ import java.util.Objects;
  */
 @Entity
 public class Court {
+    private static int courtCounter = 0;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -34,6 +36,8 @@ public class Court {
     private List<Reservation> reservations;
 
     public Court() {
+        courtCounter++;
+        courtNumber = courtCounter;
     }
 
     public Long getId() {
