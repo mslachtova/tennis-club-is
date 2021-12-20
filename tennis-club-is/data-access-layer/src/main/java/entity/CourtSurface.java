@@ -26,24 +26,31 @@ public class CourtSurface {
     @NotNull
     private double price;
 
-    public void setSurfaceType(String surfaceType) {
-        this.surfaceType = surfaceType;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public CourtSurface() {
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getSurfaceType() {
         return surfaceType;
     }
 
+    public void setSurfaceType(String surfaceType) {
+        this.surfaceType = surfaceType;
+    }
+
     public double getPrice() {
         return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
