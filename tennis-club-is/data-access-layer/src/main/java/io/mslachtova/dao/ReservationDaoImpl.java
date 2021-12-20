@@ -1,7 +1,6 @@
-package dao;
+package io.mslachtova.dao;
 
-import entity.Reservation;
-import entity.User;
+import io.mslachtova.entity.Reservation;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

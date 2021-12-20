@@ -1,6 +1,6 @@
-package dao;
+package io.mslachtova.dao;
 
-import entity.Court;
+import io.mslachtova.entity.Court;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package dao;
+package io.mslachtova.dao;
 
-import entity.Court;
+import io.mslachtova.entity.Court;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

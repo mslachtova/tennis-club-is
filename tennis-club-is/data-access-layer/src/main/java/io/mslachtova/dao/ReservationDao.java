@@ -1,6 +1,6 @@
-package dao;
+package io.mslachtova.dao;
 
-import entity.Reservation;
+import io.mslachtova.entity.Reservation;
 
 import java.util.List;
 
