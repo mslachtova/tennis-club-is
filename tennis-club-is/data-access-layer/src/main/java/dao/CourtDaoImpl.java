@@ -27,7 +27,7 @@ public class CourtDaoImpl implements CourtDao {
 
     @Override
     public List<Court> findAll() {
-        return em.createQuery("select c from Court c ", Court.class).getResultList();
+        return em.createQuery("select c from Court c", Court.class).getResultList();
     }
 
     @Override

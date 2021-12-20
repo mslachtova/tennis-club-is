@@ -27,6 +27,6 @@ public class CourtSurfaceDaoImpl implements CourtSurfaceDao {
 
     @Override
     public List<CourtSurface> findAll() {
-        return em.createQuery("select c from CourtSurface c ", CourtSurface.class).getResultList();
+        return em.createQuery("select c from CourtSurface c", CourtSurface.class).getResultList();
     }
 }
