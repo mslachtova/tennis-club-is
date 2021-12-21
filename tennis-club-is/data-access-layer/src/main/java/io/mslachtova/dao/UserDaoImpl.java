@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findByTelephoneNumber(int telephoneNumber) {
+    public User findByTelephoneNumber(String telephoneNumber) {
         return em.createQuery("select u from User u where u.telephoneNumber = :telephoneNumber", User.class)
                 .setParameter("telephoneNumber", telephoneNumber)
                 .getSingleResult();

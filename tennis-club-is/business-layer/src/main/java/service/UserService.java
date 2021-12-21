@@ -40,5 +40,5 @@ public interface UserService {
      * @param telephoneNumber -- given telephone number
      * @return user
      */
-    User findByTelephoneNumber(int telephoneNumber);
+    User findByTelephoneNumber(String telephoneNumber);
 }

@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByTelephoneNumber(int telephoneNumber) {
+    public User findByTelephoneNumber(String telephoneNumber) {
         return userDao.findByTelephoneNumber(telephoneNumber);
     }
 }
