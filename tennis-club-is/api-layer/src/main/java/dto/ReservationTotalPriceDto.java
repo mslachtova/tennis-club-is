@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * @author Monika Slachtova
  */
-public class ReservationTotalPrice {
+public class ReservationTotalPriceDto {
     private ReservationDto reservationDto;
     private double totalPrice;
 
@@ -28,8 +28,8 @@ public class ReservationTotalPrice {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ReservationTotalPrice)) return false;
-        ReservationTotalPrice that = (ReservationTotalPrice) o;
+        if (!(o instanceof ReservationTotalPriceDto)) return false;
+        ReservationTotalPriceDto that = (ReservationTotalPriceDto) o;
         return getReservationDto().equals(that.getReservationDto());
     }
 
