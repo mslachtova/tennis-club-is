@@ -41,4 +41,11 @@ public interface ReservationFacade {
      * @return object with information about the reservation ant its total price
      */
     ReservationTotalPriceDto getTotalPrice(long id);
+
+    /**
+     * Update a reservation
+     *
+     * @param reservation -- reservation to be updated
+     */
+    void update(ReservationDto reservation);
 }

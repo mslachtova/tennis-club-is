@@ -6,15 +6,15 @@ import java.util.Objects;
  * @author Monika Slachtova
  */
 public class ReservationTotalPriceDto {
-    private ReservationDto reservationDto;
+    private ReservationDto reservation;
     private double totalPrice;
 
     public ReservationDto getReservationDto() {
-        return reservationDto;
+        return reservation;
     }
 
-    public void setReservationDto(ReservationDto reservationDto) {
-        this.reservationDto = reservationDto;
+    public void setReservation(ReservationDto reservation) {
+        this.reservation = reservation;
     }
 
     public double getTotalPrice() {
@@ -41,7 +41,7 @@ public class ReservationTotalPriceDto {
     @Override
     public String toString() {
         return "ReservationTotalPrice{" +
-                "reservationDto=" + reservationDto +
+                "reservationDto=" + reservation +
                 ", totalPrice=" + totalPrice +
                 '}';
     }
