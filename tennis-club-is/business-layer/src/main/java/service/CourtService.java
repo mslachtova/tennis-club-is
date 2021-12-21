@@ -41,4 +41,11 @@ public interface CourtService {
      * @return court
      */
     Court findByCourtNumber(int courtNumber);
+
+    /**
+     * Update a court
+     *
+     * @param court -- court to be updated
+     */
+    void update(Court court);
 }

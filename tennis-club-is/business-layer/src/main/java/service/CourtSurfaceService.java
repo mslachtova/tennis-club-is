@@ -33,4 +33,11 @@ public interface CourtSurfaceService {
      * @return list of court surfaces
      */
     List<CourtSurface> findAll();
+
+    /**
+     * Update a court surface
+     *
+     * @param courtSurface -- court surface to be updated
+     */
+    void update(CourtSurface courtSurface);
 }

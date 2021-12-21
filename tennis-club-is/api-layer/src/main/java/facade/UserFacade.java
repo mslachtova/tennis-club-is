@@ -39,4 +39,11 @@ public interface UserFacade {
      * @return user
      */
     UserDto findByTelephoneNumber(int telephoneNumber);
+
+    /**
+     * Update a user
+     *
+     * @param user -- user to be updated
+     */
+    void update(UserDto user);
 }

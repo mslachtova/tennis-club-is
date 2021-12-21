@@ -34,4 +34,9 @@ public class UserServiceImpl implements UserService {
     public User findByTelephoneNumber(String telephoneNumber) {
         return userDao.findByTelephoneNumber(telephoneNumber);
     }
+
+    @Override
+    public void update(User user) {
+        userDao.update(user);
+    }
 }

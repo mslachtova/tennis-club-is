@@ -39,4 +39,11 @@ public interface CourtFacade {
      * @return court
      */
     CourtDto findByCourtNumber(int courtNumber);
+
+    /**
+     * Update a court
+     *
+     * @param court -- court to be updated
+     */
+    void update(CourtDto court);
 }

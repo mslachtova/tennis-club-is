@@ -31,4 +31,11 @@ public interface CourtSurfaceDao {
      * @return list of court surfaces
      */
     List<CourtSurface> findAll();
+
+    /**
+     * Updates court surface in database
+     *
+     * @param courtSurface -- court surface to be updated
+     */
+    void update(CourtSurface courtSurface);
 }

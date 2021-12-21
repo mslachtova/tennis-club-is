@@ -36,4 +36,9 @@ public class CourtSurfaceFacadeImpl implements CourtSurfaceFacade {
     public List<CourtSurfaceDto> findAll() {
         return beanMapper.mapTo(courtSurfaceService.findAll(), CourtSurfaceDto.class);
     }
+
+    @Override
+    public void update(CourtSurfaceDto courtSurface) {
+        courtSurfaceService.update(beanMapper.mapTo(courtSurface, CourtSurface.class));
+    }
 }

@@ -41,4 +41,9 @@ public class UserFacadeImpl implements UserFacade {
     public UserDto findByTelephoneNumber(int telephoneNumber) {
         return null;
     }
+
+    @Override
+    public void update(UserDto user) {
+        userService.update(beanMapper.mapTo(user, User.class));
+    }
 }

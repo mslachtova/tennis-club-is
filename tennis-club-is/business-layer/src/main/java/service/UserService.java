@@ -41,4 +41,11 @@ public interface UserService {
      * @return user
      */
     User findByTelephoneNumber(String telephoneNumber);
+
+    /**
+     * Update a user
+     *
+     * @param user -- user to be updated
+     */
+    void update(User user);
 }

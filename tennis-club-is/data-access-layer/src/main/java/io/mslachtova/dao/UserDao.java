@@ -39,4 +39,11 @@ public interface UserDao {
      * @return user
      */
     User findByTelephoneNumber(String telephoneNumber);
+
+    /**
+     * Updates user in database
+     *
+     * @param user -- user to be updated
+     */
+    void update(User user);
 }

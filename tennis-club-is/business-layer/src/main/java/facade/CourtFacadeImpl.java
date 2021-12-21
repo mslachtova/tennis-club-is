@@ -41,4 +41,9 @@ public class CourtFacadeImpl implements CourtFacade {
     public CourtDto findByCourtNumber(int courtNumber) {
         return beanMapper.mapTo(courtService.findByCourtNumber(courtNumber), CourtDto.class);
     }
+
+    @Override
+    public void update(CourtDto court) {
+        courtService.update(beanMapper.mapTo(court, Court.class));
+    }
 }

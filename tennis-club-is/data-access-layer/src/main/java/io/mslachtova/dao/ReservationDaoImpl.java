@@ -29,4 +29,9 @@ public class ReservationDaoImpl implements ReservationDao {
     public List<Reservation> findAll() {
         return em.createQuery("select r from Reservation r", Reservation.class).getResultList();
     }
+
+    @Override
+    public void update(Reservation reservation) {
+        em.merge(reservation);
+    }
 }

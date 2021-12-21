@@ -38,4 +38,9 @@ public class ReservationServiceImpl implements ReservationService {
         double totalPrice = reservation.getCourt().getCourtSurface().getPrice();
         return reservation.getGameType() == GameType.DOUBLES ? totalPrice * DOUBLES_PRICE_MULTIPLICATION : totalPrice;
     }
+
+    @Override
+    public void update(Reservation reservation) {
+        reservationDao.update(reservation);
+    }
 }

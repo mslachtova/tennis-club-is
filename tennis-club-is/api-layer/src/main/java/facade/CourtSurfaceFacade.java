@@ -31,4 +31,11 @@ public interface CourtSurfaceFacade {
      * @return list of court surfaces
      */
     List<CourtSurfaceDto> findAll();
+
+    /**
+     * Update a court surface
+     *
+     * @param courtSurface -- court surface to be updated
+     */
+    void update(CourtSurfaceDto courtSurface);
 }

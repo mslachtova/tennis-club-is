@@ -29,4 +29,9 @@ public class CourtSurfaceDaoImpl implements CourtSurfaceDao {
     public List<CourtSurface> findAll() {
         return em.createQuery("select c from CourtSurface c", CourtSurface.class).getResultList();
     }
+
+    @Override
+    public void update(CourtSurface courtSurface) {
+        em.merge(courtSurface);
+    }
 }

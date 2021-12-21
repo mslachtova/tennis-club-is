@@ -41,4 +41,11 @@ public interface ReservationService {
      * @return total price
      */
     double getTotalPrice(Reservation reservation);
+
+    /**
+     * Update a reservation
+     *
+     * @param reservation -- reservation to be updated
+     */
+    void update(Reservation reservation);
 }

@@ -29,4 +29,9 @@ public class CourtSurfaceServiceImpl implements CourtSurfaceService {
     public List<CourtSurface> findAll() {
         return courtSurfaceDao.findAll();
     }
+
+    @Override
+    public void update(CourtSurface courtSurface) {
+        courtSurfaceDao.update(courtSurface);
+    }
 }

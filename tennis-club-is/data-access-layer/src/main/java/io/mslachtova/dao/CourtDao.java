@@ -38,4 +38,11 @@ public interface CourtDao {
      * @return court
      */
     Court findByCourtNumber(int courtNumber);
+
+    /**
+     * Updates court in database
+     *
+     * @param court -- court to be updated
+     */
+    void update(Court court);
 }

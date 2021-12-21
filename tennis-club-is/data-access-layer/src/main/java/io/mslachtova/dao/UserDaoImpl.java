@@ -36,4 +36,9 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("telephoneNumber", telephoneNumber)
                 .getSingleResult();
     }
+
+    @Override
+    public void update(User user) {
+        em.merge(user);
+    }
 }

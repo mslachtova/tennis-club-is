@@ -34,4 +34,9 @@ public class CourtServiceImpl implements CourtService {
     public Court findByCourtNumber(int courtNumber) {
         return courtDao.findByCourtNumber(courtNumber);
     }
+
+    @Override
+    public void update(Court court) {
+        courtDao.update(court);
+    }
 }

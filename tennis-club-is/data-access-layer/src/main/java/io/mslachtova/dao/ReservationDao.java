@@ -31,4 +31,11 @@ public interface ReservationDao {
      * @return list of reservations
      */
     List<Reservation> findAll();
+
+    /**
+     * Updates reservation in database
+     *
+     * @param reservation -- reservation to be updated
+     */
+    void update(Reservation reservation);
 }
