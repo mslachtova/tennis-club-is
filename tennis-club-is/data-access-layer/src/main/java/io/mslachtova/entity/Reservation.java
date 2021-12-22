@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -28,10 +28,10 @@ public class Reservation {
     private Court court;
 
     @NotNull
-    private LocalDate from;
+    private LocalDateTime from;
 
     @NotNull
-    private LocalDate to;
+    private LocalDateTime to;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -59,19 +59,19 @@ public class Reservation {
         this.court = court;
     }
 
-    public LocalDate getFrom() {
+    public LocalDateTime getFrom() {
         return from;
     }
 
-    public void setFrom(LocalDate from) {
+    public void setFrom(LocalDateTime from) {
         this.from = from;
     }
 
-    public LocalDate getTo() {
+    public LocalDateTime getTo() {
         return to;
     }
 
-    public void setTo(LocalDate to) {
+    public void setTo(LocalDateTime to) {
         this.to = to;
     }
 

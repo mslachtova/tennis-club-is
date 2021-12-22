@@ -2,7 +2,7 @@ package dto;
 
 import enums.GameType;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -11,8 +11,8 @@ import java.util.Objects;
 public class ReservationDto {
     private Long id;
     private CourtDto court;
-    private LocalDate from;
-    private LocalDate to;
+    private LocalDateTime from;
+    private LocalDateTime to;
     private GameType gameType;
     private UserDto user;
 
@@ -32,19 +32,19 @@ public class ReservationDto {
         this.court = court;
     }
 
-    public LocalDate getFrom() {
+    public LocalDateTime getFrom() {
         return from;
     }
 
-    public void setFrom(LocalDate from) {
+    public void setFrom(LocalDateTime from) {
         this.from = from;
     }
 
-    public LocalDate getTo() {
+    public LocalDateTime getTo() {
         return to;
     }
 
-    public void setTo(LocalDate to) {
+    public void setTo(LocalDateTime to) {
         this.to = to;
     }
 
