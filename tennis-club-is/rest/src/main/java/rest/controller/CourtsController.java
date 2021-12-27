@@ -14,6 +14,8 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
+ * REST Controller for courts
+ *
  * @author Monika Slachtova
  */
 @RestController
