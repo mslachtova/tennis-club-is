@@ -1,7 +1,7 @@
 package rest.controller;
 
-import dto.CourtDto;
-import facade.CourtFacade;
+import io.mslachtova.dto.CourtDto;
+import io.mslachtova.facade.CourtFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;

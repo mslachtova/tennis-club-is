@@ -1,9 +1,9 @@
 package rest.controller;
 
-import dto.ReservationCreateDto;
-import dto.ReservationDto;
-import dto.ReservationTotalPriceDto;
-import facade.ReservationFacade;
+import io.mslachtova.dto.ReservationCreateDto;
+import io.mslachtova.dto.ReservationDto;
+import io.mslachtova.dto.ReservationTotalPriceDto;
+import io.mslachtova.facade.ReservationFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
