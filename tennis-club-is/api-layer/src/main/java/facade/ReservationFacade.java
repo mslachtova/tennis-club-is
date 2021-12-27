@@ -16,8 +16,9 @@ public interface ReservationFacade {
      * Create a new reservation
      *
      * @param reservation
+     * @return reservation id
      */
-    void create(ReservationCreateDto reservation);
+    Long create(ReservationCreateDto reservation);
 
     /**
      * Find a reservation by id

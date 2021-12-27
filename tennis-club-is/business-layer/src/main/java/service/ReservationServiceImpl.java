@@ -19,8 +19,9 @@ public class ReservationServiceImpl implements ReservationService {
     private ReservationDao reservationDao;
 
     @Override
-    public void create(Reservation reservation) {
+    public Reservation create(Reservation reservation) {
         reservationDao.create(reservation);
+        return reservation;
     }
 
     @Override

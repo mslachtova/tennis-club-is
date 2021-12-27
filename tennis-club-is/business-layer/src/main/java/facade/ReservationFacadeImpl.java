@@ -35,7 +35,7 @@ public class ReservationFacadeImpl implements ReservationFacade {
     private BeanMapper beanMapper;
 
     @Override
-    public void create(ReservationCreateDto reservation) {
+    public Long create(ReservationCreateDto reservation) {
         Court court = courtService.findByCourtNumber(reservation.getCourtNumber());
         checkCourt(court, reservation);
         User user = userService.findByTelephoneNumber(reservation.getTelephoneNumber());
@@ -45,7 +45,8 @@ public class ReservationFacadeImpl implements ReservationFacade {
         user.addReservation(r);
         courtService.update(court);
         userService.update(user);
-        reservationService.create(r);
+        Reservation newReservation = reservationService.create(r);
+        return newReservation.getId();
     }
 
     @Override
