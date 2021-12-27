@@ -101,6 +101,11 @@ class CourtSurfaceDaoTest {
     }
 
     @Test
+    void createExistingEntity() {
+        assertThrows(DataAccessException.class, () -> courtSurfaceDao.create(courtSurface1));
+    }
+
+    @Test
     void findById() {
         CourtSurface foundCourtSurface = courtSurfaceDao.findById(courtSurface1.getId());
         assertThat(foundCourtSurface).isEqualTo(courtSurface1);
