@@ -12,8 +12,8 @@
         <module>data-access-layer</module>
         <module>business-layer</module>
         <module>api-layer</module>
-        <module>rest</module>
         <module>sample-data</module>
+        <module>rest</module>
     </modules>
 
     <parent>
