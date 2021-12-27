@@ -2,7 +2,11 @@ package io.mslachtova.dao;
 
 import io.mslachtova.entity.Court;
 import io.mslachtova.entity.CourtSurface;
+import io.mslachtova.entity.Reservation;
 import io.mslachtova.entity.User;
+import io.mslachtova.enums.GameType;
+
+import java.time.LocalDateTime;
 
 /**
  * Class including methods used by Test classes
@@ -42,5 +46,16 @@ public class TestHelper {
         user.setTelephoneNumber("766456991");
         user.setName("Bob Taylor");
         return user;
+    }
+
+    static Reservation getReservationWithGivenParameters(Court court, LocalDateTime from, LocalDateTime to,
+                                                         GameType gameType, User user) {
+        Reservation reservation = new Reservation();
+        reservation.setCourt(court);
+        reservation.setFrom(from);
+        reservation.setTo(to);
+        reservation.setGameType(gameType);
+        reservation.setUser(user);
+        return reservation;
     }
 }
