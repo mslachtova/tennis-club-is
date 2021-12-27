@@ -106,4 +106,11 @@ class CourtDaoTest {
     void findByNonExistingCourtNumber() {
         assertThat(courtDao.findByCourtNumber(6)).isNull();
     }
+
+    @Test
+    void update() {
+        court1.setCourtSurface(courtSurface2);
+        courtDao.update(court1);
+        assertThat(courtDao.findById(court1.getId()).getCourtSurface()).isEqualTo(courtSurface2);
+    }
 }

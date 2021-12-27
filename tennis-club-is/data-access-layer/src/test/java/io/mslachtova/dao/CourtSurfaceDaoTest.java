@@ -125,4 +125,12 @@ class CourtSurfaceDaoTest {
         assertThat(foundCourtSurfaces.size()).isEqualTo(2);
         assertThat(foundCourtSurfaces).contains(courtSurface1, courtSurface2);
     }
+
+    @Test
+    void update() {
+        String newCourtSurface = "green";
+        courtSurface1.setSurfaceType(newCourtSurface);
+        courtSurfaceDao.update(courtSurface2);
+        assertThat(courtSurfaceDao.findById(courtSurface1.getId()).getSurfaceType()).isEqualTo(newCourtSurface);
+    }
 }
