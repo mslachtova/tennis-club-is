@@ -112,6 +112,11 @@ class CourtSurfaceDaoTest {
     }
 
     @Test
+    void findByIdNullId() {
+        assertThrows(DataAccessException.class, () -> courtSurfaceDao.findById(null));
+    }
+
+    @Test
     void findByIdNonExistingId() {
         assertThrows(DataAccessException.class, () -> courtSurfaceDao.findById(5L));
     }
