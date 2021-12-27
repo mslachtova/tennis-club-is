@@ -1,5 +1,6 @@
 package io.mslachtova.dao;
 
+import io.mslachtova.entity.Court;
 import io.mslachtova.entity.CourtSurface;
 
 /**
@@ -20,5 +21,11 @@ public class TestHelper {
         courtSurface.setSurfaceType("hard");
         courtSurface.setPrice(180.0);
         return courtSurface;
+    }
+
+    static Court getCourtWithGivenSurface(CourtSurface courtSurface) {
+        Court court = new Court();
+        court.setCourtSurface(courtSurface);
+        return court;
     }
 }
