@@ -74,6 +74,18 @@ public class ReservationFacadeImpl implements ReservationFacade {
         reservationService.update(beanMapper.mapTo(reservation, Reservation.class));
     }
 
+    @Override
+    public List<ReservationDto> getReservationsByCourtNumber(int courtNumber) {
+        Court court = courtService.findByCourtNumber(courtNumber);
+        return court == null ? null : beanMapper.mapTo(court.getReservations(), ReservationDto.class);
+    }
+
+    @Override
+    public List<ReservationDto> getReservationsByTelephoneNumber(String telephoneNumber) {
+        User user = userService.findByTelephoneNumber(telephoneNumber);
+        return user == null ? null : beanMapper.mapTo(user.getReservations(), ReservationDto.class);
+    }
+
     private void checkCourt(Court court, ReservationCreateDto reservation) {
         if (court == null)
             throw new IllegalArgumentException("Court with court number " + reservation.getCourtNumber()

@@ -48,4 +48,20 @@ public interface ReservationFacade {
      * @param reservation -- reservation to be updated
      */
     void update(ReservationDto reservation);
+
+    /**
+     * Get all reservations for a court with given court number
+     *
+     * @param courtNumber -- given court number
+     * @return list of reservations
+     */
+    List<ReservationDto> getReservationsByCourtNumber(int courtNumber);
+
+    /**
+     * Get all reservations for an user with given telephone number
+     *
+     * @param telephoneNumber -- given telephone number
+     * @return list of reservations
+     */
+    List<ReservationDto> getReservationsByTelephoneNumber(String telephoneNumber);
 }
