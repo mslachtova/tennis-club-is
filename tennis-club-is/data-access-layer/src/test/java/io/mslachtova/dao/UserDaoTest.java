@@ -18,6 +18,8 @@ import javax.persistence.PersistenceUnit;
 
 import java.util.List;
 
+import static io.mslachtova.dao.TestHelper.getAlice;
+import static io.mslachtova.dao.TestHelper.getBob;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -43,14 +45,10 @@ class UserDaoTest {
         try {
             em.getTransaction().begin();
 
-            user1 = new User();
-            user1.setTelephoneNumber("745558238");
-            user1.setName("Alice Smith");
+            user1 = getAlice();
             em.persist(user1);
 
-            user2 = new User();
-            user2.setTelephoneNumber("766456991");
-            user2.setName("Bob Taylor");
+            user2 = getBob();
             em.persist(user2);
 
             em.getTransaction().commit();
