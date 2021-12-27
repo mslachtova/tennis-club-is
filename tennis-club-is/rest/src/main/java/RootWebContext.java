@@ -25,7 +25,7 @@ import java.util.Locale;
 @EnableWebMvc
 @Configuration
 @Import({ServiceConfig.class, SampleDataConfig.class})
-@ComponentScan(basePackages = "rest.controllers")
+@ComponentScan(basePackages = "rest.controller")
 public class RootWebContext implements WebMvcConfigurer {
 
     @Override
