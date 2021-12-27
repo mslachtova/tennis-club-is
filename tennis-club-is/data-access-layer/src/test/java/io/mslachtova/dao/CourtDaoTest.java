@@ -18,6 +18,8 @@ import javax.persistence.PersistenceUnit;
 
 import java.util.List;
 
+import static io.mslachtova.dao.TestHelper.getGrassCourtSurface;
+import static io.mslachtova.dao.TestHelper.getHardCourtSurface;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -47,14 +49,10 @@ class CourtDaoTest {
         try {
             em.getTransaction().begin();
 
-            courtSurface1 = new CourtSurface();
-            courtSurface1.setSurfaceType("grass");
-            courtSurface1.setPrice(200.0);
+            courtSurface1 = getGrassCourtSurface();
             em.persist(courtSurface1);
 
-            courtSurface2 = new CourtSurface();
-            courtSurface2.setSurfaceType("hard");
-            courtSurface2.setPrice(180.0);
+            courtSurface2 = getHardCourtSurface();
             em.persist(courtSurface2);
 
             court1 = new Court();
