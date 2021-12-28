@@ -38,7 +38,7 @@ public interface UserFacade {
      * @param telephoneNumber -- given telephone number
      * @return user
      */
-    UserDto findByTelephoneNumber(int telephoneNumber);
+    UserDto findByTelephoneNumber(String telephoneNumber);
 
     /**
      * Update a user

@@ -38,7 +38,7 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UserDto findByTelephoneNumber(int telephoneNumber) {
+    public UserDto findByTelephoneNumber(String telephoneNumber) {
         return null;
     }
 
