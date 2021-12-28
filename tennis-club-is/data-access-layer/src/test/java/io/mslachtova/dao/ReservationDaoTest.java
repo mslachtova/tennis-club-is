@@ -44,9 +44,6 @@ class ReservationDaoTest {
     @Autowired
     private ReservationDao reservationDao;
 
-    private CourtSurface courtSurface1;
-    private CourtSurface courtSurface2;
-
     private Court court1;
     private Court court2;
 
@@ -62,9 +59,9 @@ class ReservationDaoTest {
         try {
             em.getTransaction().begin();
 
-            courtSurface1 = getGrassCourtSurface();
+            CourtSurface courtSurface1 = getGrassCourtSurface();
             em.persist(courtSurface1);
-            courtSurface2 = getHardCourtSurface();
+            CourtSurface courtSurface2 = getHardCourtSurface();
             em.persist(courtSurface2);
 
             court1 = getCourtWithGivenSurface(courtSurface1);
@@ -106,30 +103,24 @@ class ReservationDaoTest {
 
     @Test
     void createNullFrom() {
-        assertThrows(DataAccessException.class, () -> {
-           reservationDao.create(getReservationWithGivenParameters(court1,null,
-                   LocalDateTime.of(2022, 1, 6, 18, 0),
-                   GameType.DOUBLES, user2));
-        });
+        assertThrows(DataAccessException.class, () -> reservationDao.create(getReservationWithGivenParameters(court1,
+                null, LocalDateTime.of(2022, 1, 6, 18, 0),
+                GameType.DOUBLES, user2)));
     }
 
     @Test
     void createNullTo() {
-        assertThrows(DataAccessException.class, () -> {
-            reservationDao.create(getReservationWithGivenParameters(court1,
-                    LocalDateTime.of(2022, 1, 6, 16, 30),
-                    null, GameType.DOUBLES, user2));
-        });
+        assertThrows(DataAccessException.class, () -> reservationDao.create(getReservationWithGivenParameters(court1,
+                LocalDateTime.of(2022, 1, 6, 16, 30),
+                null, GameType.DOUBLES, user2)));
     }
 
     @Test
     void createNullGameType() {
-        assertThrows(DataAccessException.class, () -> {
-            reservationDao.create(getReservationWithGivenParameters(court1,
-                    LocalDateTime.of(2022, 1, 6, 16, 30),
-                    LocalDateTime.of(2022, 1, 6, 18, 0),
-                    null, user2));
-        });
+        assertThrows(DataAccessException.class, () -> reservationDao.create(getReservationWithGivenParameters(court1,
+                LocalDateTime.of(2022, 1, 6, 16, 30),
+                LocalDateTime.of(2022, 1, 6, 18, 0),
+                null, user2)));
     }
 
     @Test

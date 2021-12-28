@@ -1,7 +1,6 @@
 package io.mslachtova.dao;
 
 import io.mslachtova.PersistenceConfig;
-import io.mslachtova.entity.Reservation;
 import io.mslachtova.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
