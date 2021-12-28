@@ -15,10 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
-
 import java.util.List;
 
-import static io.mslachtova.dao.TestHelper.getCourtWithGivenSurface;
 import static io.mslachtova.dao.TestHelper.getGrassCourtSurface;
 import static io.mslachtova.dao.TestHelper.getHardCourtSurface;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -56,10 +54,10 @@ class CourtDaoTest {
             courtSurface2 = getHardCourtSurface();
             em.persist(courtSurface2);
 
-            court1 = getCourtWithGivenSurface(courtSurface1);
+            court1 = new Court(courtSurface1);
             em.persist(court1);
 
-            court2 = getCourtWithGivenSurface(courtSurface2);
+            court2 = new Court(courtSurface2);
             em.persist(court2);
 
             em.getTransaction().commit();

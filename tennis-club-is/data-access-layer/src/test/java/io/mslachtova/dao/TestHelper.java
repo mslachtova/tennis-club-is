@@ -15,47 +15,22 @@ import java.time.LocalDateTime;
  */
 public class TestHelper {
     static CourtSurface getGrassCourtSurface() {
-        CourtSurface courtSurface = new CourtSurface();
-        courtSurface.setSurfaceType("grass");
-        courtSurface.setPrice(200.0);
+        CourtSurface courtSurface = new CourtSurface("grass", 200.0);
         return courtSurface;
     }
 
     static CourtSurface getHardCourtSurface() {
-        CourtSurface courtSurface = new CourtSurface();
-        courtSurface.setSurfaceType("hard");
-        courtSurface.setPrice(180.0);
+        CourtSurface courtSurface = new CourtSurface("hard", 180.0);
         return courtSurface;
     }
 
-    static Court getCourtWithGivenSurface(CourtSurface courtSurface) {
-        Court court = new Court();
-        court.setCourtSurface(courtSurface);
-        return court;
-    }
-
     static User getAlice() {
-        User user = new User();
-        user.setTelephoneNumber("745558238");
-        user.setName("Alice Smith");
+        User user = new User("745558238", "Alice Smith");
         return user;
     }
 
     static User getBob() {
-        User user = new User();
-        user.setTelephoneNumber("766456991");
-        user.setName("Bob Taylor");
+        User user = new User("766456991", "Bob Taylor");
         return user;
-    }
-
-    static Reservation getReservationWithGivenParameters(Court court, LocalDateTime from, LocalDateTime to,
-                                                         GameType gameType, User user) {
-        Reservation reservation = new Reservation();
-        reservation.setCourt(court);
-        reservation.setFrom(from);
-        reservation.setTo(to);
-        reservation.setGameType(gameType);
-        reservation.setUser(user);
-        return reservation;
     }
 }

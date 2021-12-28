@@ -32,12 +32,21 @@ public class Court {
     @NotNull
     private CourtSurface courtSurface;
 
-    @OneToMany(mappedBy="reservation")
+    @OneToMany(mappedBy = "reservation")
     private List<Reservation> reservations;
 
     public Court() {
+        courtNumber = assignCourtNumber();
+    }
+
+    public Court(@NotNull CourtSurface courtSurface) {
+        this.courtSurface = courtSurface;
+        courtNumber = assignCourtNumber();
+    }
+
+    private static int assignCourtNumber() {
         courtCounter++;
-        courtNumber = courtCounter;
+        return courtCounter;
     }
 
     public Long getId() {

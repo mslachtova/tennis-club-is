@@ -29,6 +29,11 @@ public class CourtSurface {
     public CourtSurface() {
     }
 
+    public CourtSurface(@NotNull String surfaceType, @NotNull double price) {
+        this.surfaceType = surfaceType;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }

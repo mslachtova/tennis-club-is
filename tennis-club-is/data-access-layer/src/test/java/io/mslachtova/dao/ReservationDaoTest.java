@@ -18,16 +18,13 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static io.mslachtova.dao.TestHelper.getAlice;
 import static io.mslachtova.dao.TestHelper.getBob;
-import static io.mslachtova.dao.TestHelper.getCourtWithGivenSurface;
 import static io.mslachtova.dao.TestHelper.getGrassCourtSurface;
 import static io.mslachtova.dao.TestHelper.getHardCourtSurface;
-import static io.mslachtova.dao.TestHelper.getReservationWithGivenParameters;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -64,9 +61,9 @@ class ReservationDaoTest {
             CourtSurface courtSurface2 = getHardCourtSurface();
             em.persist(courtSurface2);
 
-            court1 = getCourtWithGivenSurface(courtSurface1);
+            court1 = new Court(courtSurface1);
             em.persist(court1);
-            court2 = getCourtWithGivenSurface(courtSurface2);
+            court2 = new Court(courtSurface2);
             em.persist(court2);
 
             user1 = getAlice();
@@ -74,12 +71,12 @@ class ReservationDaoTest {
             user2 = getBob();
             em.persist(user2);
 
-            reservation1 = getReservationWithGivenParameters(court1,
+            reservation1 = new Reservation(court1,
                     LocalDateTime.of(2022, 1, 5, 10, 30),
                     LocalDateTime.of(2022, 1, 5, 11, 30),
                     GameType.DOUBLES, user2);
             em.persist(reservation1);
-            reservation2 = getReservationWithGivenParameters(court2,
+            reservation2 = new Reservation(court2,
                     LocalDateTime.of(2022, 1, 7, 10, 30),
                     LocalDateTime.of(2022, 1, 7, 12, 0),
                     GameType.SINGLES, user1);
@@ -93,7 +90,7 @@ class ReservationDaoTest {
 
     @Test
     void create() {
-        Reservation reservation = getReservationWithGivenParameters(court2,
+        Reservation reservation = new Reservation(court2,
                 LocalDateTime.of(2022, 1, 10, 10, 30),
                 LocalDateTime.of(2022, 2, 1, 9, 0),
                 GameType.SINGLES, user1);
@@ -103,21 +100,20 @@ class ReservationDaoTest {
 
     @Test
     void createNullFrom() {
-        assertThrows(DataAccessException.class, () -> reservationDao.create(getReservationWithGivenParameters(court1,
-                null, LocalDateTime.of(2022, 1, 6, 18, 0),
-                GameType.DOUBLES, user2)));
+        assertThrows(DataAccessException.class, () -> reservationDao.create(new Reservation(court1, null,
+                LocalDateTime.of(2022, 1, 6, 18, 0), GameType.DOUBLES, user2)));
     }
 
     @Test
     void createNullTo() {
-        assertThrows(DataAccessException.class, () -> reservationDao.create(getReservationWithGivenParameters(court1,
+        assertThrows(DataAccessException.class, () -> reservationDao.create(new Reservation(court1,
                 LocalDateTime.of(2022, 1, 6, 16, 30),
                 null, GameType.DOUBLES, user2)));
     }
 
     @Test
     void createNullGameType() {
-        assertThrows(DataAccessException.class, () -> reservationDao.create(getReservationWithGivenParameters(court1,
+        assertThrows(DataAccessException.class, () -> reservationDao.create(new Reservation(court1,
                 LocalDateTime.of(2022, 1, 6, 16, 30),
                 LocalDateTime.of(2022, 1, 6, 18, 0),
                 null, user2)));

@@ -58,9 +58,7 @@ class UserDaoTest {
 
     @Test
     void create() {
-        User user = new User();
-        user.setTelephoneNumber("768995125");
-        user.setName("Jane Doe");
+        User user = new User("768995125", "Jane Doe");
         userDao.create(user);
         assertThat(userDao.findById(user.getId())).isEqualTo(user);
     }
@@ -68,8 +66,7 @@ class UserDaoTest {
     @Test
     void createNullTelephoneNumber() {
         assertThrows(DataAccessException.class, () -> {
-            User user = new User();
-            user.setName("John Doe");
+            User user = new User(null,"John Doe");
             userDao.create(user);
         });
     }
@@ -77,8 +74,7 @@ class UserDaoTest {
     @Test
     void createNullName() {
         assertThrows(DataAccessException.class, () -> {
-            User user = new User();
-            user.setTelephoneNumber("758888994");
+            User user = new User("758888994", null);
             userDao.create(user);
         });
     }
@@ -86,9 +82,7 @@ class UserDaoTest {
     @Test
     void createAlreadyExistingTelephoneNumber() {
         assertThrows(DataAccessException.class, () -> {
-           User user = new User();
-           user.setTelephoneNumber("745558238");
-           user.setName("Jane Doe");
+           User user = new User("745558238", "Jane Doe");
         });
     }
 

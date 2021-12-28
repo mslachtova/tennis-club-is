@@ -36,6 +36,11 @@ public class User {
     public User() {
     }
 
+    public User(@NotNull String telephoneNumber, @NotNull String name) {
+        this.telephoneNumber = telephoneNumber;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

@@ -58,9 +58,7 @@ class CourtSurfaceDaoTest {
 
     @Test
     void create() {
-        CourtSurface courtSurface = new CourtSurface();
-        courtSurface.setSurfaceType("clay");
-        courtSurface.setPrice(160.0);
+        CourtSurface courtSurface = new CourtSurface("clay", 160.0);
         courtSurfaceDao.create(courtSurface);
         assertThat(courtSurfaceDao.findById(courtSurface.getId())).isEqualTo(courtSurface);
     }
@@ -73,17 +71,7 @@ class CourtSurfaceDaoTest {
     @Test
     void createNullSurfaceType() {
         assertThrows(DataAccessException.class, () -> {
-            CourtSurface courtSurface = new CourtSurface();
-            courtSurface.setPrice(160.0);
-            courtSurfaceDao.create(courtSurface);
-        });
-    }
-
-    @Test
-    void createNullPrice() {
-        assertThrows(DataAccessException.class, () -> {
-            CourtSurface courtSurface = new CourtSurface();
-            courtSurface.setSurfaceType("clay");
+            CourtSurface courtSurface = new CourtSurface(null, 160.0);
             courtSurfaceDao.create(courtSurface);
         });
     }
@@ -91,9 +79,7 @@ class CourtSurfaceDaoTest {
     @Test
     void createExistingSurfaceType() {
         assertThrows(DataAccessException.class, () -> {
-            CourtSurface courtSurface = new CourtSurface();
-            courtSurface.setSurfaceType("hard");
-            courtSurface.setPrice(160.0);
+            CourtSurface courtSurface = new CourtSurface("hard", 160.0);
             courtSurfaceDao.create(courtSurface);
         });
     }
