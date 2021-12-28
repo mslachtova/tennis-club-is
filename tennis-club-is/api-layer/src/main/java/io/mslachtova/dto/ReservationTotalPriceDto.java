@@ -9,7 +9,7 @@ public class ReservationTotalPriceDto {
     private ReservationDto reservation;
     private double totalPrice;
 
-    public ReservationDto getReservationDto() {
+    public ReservationDto getReservation() {
         return reservation;
     }
 
@@ -30,12 +30,12 @@ public class ReservationTotalPriceDto {
         if (this == o) return true;
         if (!(o instanceof ReservationTotalPriceDto)) return false;
         ReservationTotalPriceDto that = (ReservationTotalPriceDto) o;
-        return getReservationDto().equals(that.getReservationDto());
+        return getReservation().equals(that.getReservation());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getReservationDto());
+        return Objects.hash(getReservation());
     }
 
     @Override
