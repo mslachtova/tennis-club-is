@@ -113,9 +113,8 @@ class ReservationFacadeTest {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setTelephoneNumber(user.getTelephoneNumber());
         reservationCreateDto.setName(user.getName());
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-           reservationFacade.create(reservationCreateDto);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
         assertThat(exception.getMessage()).isEqualTo("Telephone number " + reservationCreateDto.getTelephoneNumber()
                 + "has already been attached to name " + user1.getName() + ".");
     }
@@ -124,9 +123,8 @@ class ReservationFacadeTest {
     void createNonExistingCourtNumber() {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setCourtNumber(10);
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            reservationFacade.create(reservationCreateDto);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
         assertThat(exception.getMessage()).isEqualTo("Court with court number " + reservationCreateDto.getCourtNumber()
                 + " not found.");
     }
@@ -136,9 +134,8 @@ class ReservationFacadeTest {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 13, 15));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 13, 15));
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            reservationFacade.create(reservationCreateDto);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
         assertThat(exception.getMessage()).isEqualTo(reservationCreateDto.getTo() + " is not after "
                 + reservationCreateDto.getFrom());
     }
@@ -148,9 +145,8 @@ class ReservationFacadeTest {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 15));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 13, 15));
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            reservationFacade.create(reservationCreateDto);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
         assertThat(exception.getMessage()).isEqualTo(reservationCreateDto.getTo() + " is not after "
                 + reservationCreateDto.getFrom());
     }
@@ -176,9 +172,8 @@ class ReservationFacadeTest {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 13, 0));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 15, 0));
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            reservationFacade.create(reservationCreateDto);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
         assertThat(exception.getMessage()).isEqualTo("The time interval has already been reserved.");
     }
 
@@ -187,9 +182,8 @@ class ReservationFacadeTest {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 20));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 14, 30));
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            reservationFacade.create(reservationCreateDto);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
         assertThat(exception.getMessage()).isEqualTo("The time interval has already been reserved.");
     }
 
@@ -198,9 +192,8 @@ class ReservationFacadeTest {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 20));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 14, 30));
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            reservationFacade.create(reservationCreateDto);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
         assertThat(exception.getMessage()).isEqualTo("The time interval has already been reserved.");
     }
 
@@ -209,9 +202,8 @@ class ReservationFacadeTest {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 30));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 15, 0));
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            reservationFacade.create(reservationCreateDto);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
         assertThat(exception.getMessage()).isEqualTo("The time interval has already been reserved.");
     }
 
