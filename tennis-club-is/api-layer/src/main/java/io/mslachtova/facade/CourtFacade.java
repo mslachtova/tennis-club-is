@@ -13,7 +13,7 @@ public interface CourtFacade {
     /**
      * Create a new court
      *
-     * @param court
+     * @param court -- court to be created
      */
     void create(CourtDto court);
 

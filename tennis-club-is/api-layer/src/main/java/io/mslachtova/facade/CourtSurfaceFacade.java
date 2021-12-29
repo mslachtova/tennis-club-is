@@ -13,7 +13,7 @@ public interface CourtSurfaceFacade {
     /**
      * Create a new court surface
      *
-     * @param courtSurface
+     * @param courtSurface -- court surface to be created
      */
     void create(CourtSurfaceDto courtSurface);
 

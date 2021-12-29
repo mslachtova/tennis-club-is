@@ -13,7 +13,7 @@ public interface UserFacade {
     /**
      * Create a new user
      *
-     * @param user
+     * @param user -- user to be created
      */
     void create(UserDto user);
 
