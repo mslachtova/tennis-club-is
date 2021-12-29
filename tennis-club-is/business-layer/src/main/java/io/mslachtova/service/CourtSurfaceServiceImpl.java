@@ -12,8 +12,12 @@ import java.util.List;
  */
 @Service
 public class CourtSurfaceServiceImpl implements CourtSurfaceService {
+    private final CourtSurfaceDao courtSurfaceDao;
+
     @Autowired
-    private CourtSurfaceDao courtSurfaceDao;
+    public CourtSurfaceServiceImpl(CourtSurfaceDao courtSurfaceDao) {
+        this.courtSurfaceDao = courtSurfaceDao;
+    }
 
     @Override
     public void create(CourtSurface courtSurface) {

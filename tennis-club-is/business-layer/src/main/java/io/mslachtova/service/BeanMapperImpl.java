@@ -11,8 +11,12 @@ import java.util.List;
  * @author Monika Slachtova
  */
 public class BeanMapperImpl implements BeanMapper {
+    private final Mapper dozer;
+
     @Autowired
-    private Mapper dozer;
+    public BeanMapperImpl(Mapper dozer) {
+        this.dozer = dozer;
+    }
 
     @Override
     public <T> List<T> mapTo(Collection<?> objects, Class<T> mapToClass) {
