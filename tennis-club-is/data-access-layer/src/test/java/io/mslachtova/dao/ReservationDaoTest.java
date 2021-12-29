@@ -6,14 +6,15 @@ import io.mslachtova.entity.CourtSurface;
 import io.mslachtova.entity.Reservation;
 import io.mslachtova.entity.User;
 import io.mslachtova.enums.GameType;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,7 +27,7 @@ import static io.mslachtova.dao.TestHelper.getBob;
 import static io.mslachtova.dao.TestHelper.getGrassCourtSurface;
 import static io.mslachtova.dao.TestHelper.getHardCourtSurface;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.testng.Assert.assertThrows;
 
 /**
  * @author Monika Slachtova
@@ -34,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ContextConfiguration(classes = PersistenceConfig.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-class ReservationDaoTest {
+public class ReservationDaoTest extends AbstractTestNGSpringContextTests {
     @PersistenceUnit
     private EntityManagerFactory emf;
 
@@ -50,7 +51,7 @@ class ReservationDaoTest {
     private Reservation reservation1;
     private Reservation reservation2;
 
-    @BeforeEach
+    @BeforeClass
     void setUp() {
         EntityManager em = emf.createEntityManager();
         try {

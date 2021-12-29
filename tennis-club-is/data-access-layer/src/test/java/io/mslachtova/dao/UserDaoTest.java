@@ -2,25 +2,25 @@ package io.mslachtova.dao;
 
 import io.mslachtova.PersistenceConfig;
 import io.mslachtova.entity.User;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
-
 import java.util.List;
 
 import static io.mslachtova.dao.TestHelper.getAlice;
 import static io.mslachtova.dao.TestHelper.getBob;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.testng.Assert.assertThrows;
 
 /**
  * @author Monika Slachtova
@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ContextConfiguration(classes = PersistenceConfig.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-class UserDaoTest {
+public class UserDaoTest extends AbstractTestNGSpringContextTests {
     @PersistenceUnit
     private EntityManagerFactory emf;
 
@@ -38,7 +38,7 @@ class UserDaoTest {
     private User user1;
     private User user2;
 
-    @BeforeEach
+    @BeforeClass
     void setUp() {
         EntityManager em = emf.createEntityManager();
         try {
