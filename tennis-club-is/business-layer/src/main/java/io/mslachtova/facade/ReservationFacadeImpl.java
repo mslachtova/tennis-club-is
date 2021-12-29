@@ -22,17 +22,22 @@ import java.util.List;
 @Service
 @Transactional
 public class ReservationFacadeImpl implements ReservationFacade {
-    @Autowired
-    private CourtService courtService;
+    private final CourtService courtService;
+
+    private final UserService userService;
+
+    private final ReservationService reservationService;
+
+    private final BeanMapper beanMapper;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private ReservationService reservationService;
-
-    @Autowired
-    private BeanMapper beanMapper;
+    public ReservationFacadeImpl(CourtService courtService, UserService userService,
+                                 ReservationService reservationService, BeanMapper beanMapper) {
+        this.courtService = courtService;
+        this.userService = userService;
+        this.reservationService = reservationService;
+        this.beanMapper = beanMapper;
+    }
 
     @Override
     public Long create(ReservationCreateDto reservation) {
