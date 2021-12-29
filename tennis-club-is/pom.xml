@@ -27,6 +27,8 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <version.assertj>3.19.0</version.assertj>
+        <version.slf4j>1.7.30</version.slf4j>
+        <version.logback>1.2.3</version.logback>
     </properties>
 
     <dependencyManagement>
