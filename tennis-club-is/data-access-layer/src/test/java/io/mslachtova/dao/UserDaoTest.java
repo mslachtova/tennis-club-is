@@ -83,6 +83,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
     void createAlreadyExistingTelephoneNumber() {
         assertThrows(DataAccessException.class, () -> {
            User user = new User("745558238", "Jane Doe");
+           userDao.create(user);
         });
     }
 
