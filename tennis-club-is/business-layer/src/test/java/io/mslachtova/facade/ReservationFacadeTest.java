@@ -84,7 +84,7 @@ class ReservationFacadeTest {
         reservationDto1 = beanMapper.mapTo(reservation1, ReservationDto.class);
         reservation2 = new Reservation(court, LocalDateTime.of(2022, 3, 2, 15, 15),
                 LocalDateTime.of(2022, 3, 2, 16, 45), GameType.SINGLES, user2);
-        reservationDto1 = beanMapper.mapTo(reservation1, ReservationDto.class);
+        reservationDto2 = beanMapper.mapTo(reservation2, ReservationDto.class);
         court.setReservations(List.of(reservation1, reservation2));
         user1.addReservation(reservation1);
         user2.addReservation(reservation2);
