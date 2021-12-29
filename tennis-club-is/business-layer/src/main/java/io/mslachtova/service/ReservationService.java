@@ -15,7 +15,7 @@ public interface ReservationService {
     /**
      * Create a new reservation
      *
-     * @param reservation
+     * @param reservation -- reservation to be created
      * @return reservation
      */
     Reservation create(Reservation reservation);
@@ -38,7 +38,7 @@ public interface ReservationService {
     /**
      * Count total price for a given Reservation
      *
-     * @param reservation
+     * @param reservation -- given reservation
      * @return total price
      */
     double getTotalPrice(Reservation reservation);

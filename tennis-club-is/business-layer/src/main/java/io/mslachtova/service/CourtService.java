@@ -15,7 +15,7 @@ public interface CourtService {
     /**
      * Create a new court
      *
-     * @param court
+     * @param court -- court to be created
      */
     void create(Court court);
 

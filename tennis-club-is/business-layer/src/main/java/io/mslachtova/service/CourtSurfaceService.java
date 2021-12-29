@@ -15,7 +15,7 @@ public interface CourtSurfaceService {
     /**
      * Create a new court surface
      *
-     * @param courtSurface
+     * @param courtSurface -- court surface to be created
      */
     void create(CourtSurface courtSurface);
 

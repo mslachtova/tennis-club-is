@@ -15,7 +15,7 @@ public interface UserService {
     /**
      * Create a new user
      *
-     * @param user
+     * @param user -- user to be created
      */
     void create(User user);
 
