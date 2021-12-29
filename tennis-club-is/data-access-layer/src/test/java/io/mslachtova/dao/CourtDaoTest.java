@@ -67,7 +67,7 @@ public class CourtDaoTest extends AbstractTestNGSpringContextTests {
         }
     }
 
-    @Test
+    @Test(dependsOnMethods = "findById")
     void create() {
         Court court = new Court();
         court.setCourtSurface(courtSurface2);

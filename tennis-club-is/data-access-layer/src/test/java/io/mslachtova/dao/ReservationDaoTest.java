@@ -89,7 +89,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests {
         }
     }
 
-    @Test
+    @Test(dependsOnMethods = "findById")
     void create() {
         Reservation reservation = new Reservation(court2,
                 LocalDateTime.of(2022, 1, 10, 10, 30),

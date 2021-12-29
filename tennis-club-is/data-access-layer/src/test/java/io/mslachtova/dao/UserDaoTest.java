@@ -56,7 +56,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
         }
     }
 
-    @Test
+    @Test(dependsOnMethods = "findById")
     void create() {
         User user = new User("768995125", "Jane Doe");
         userDao.create(user);
