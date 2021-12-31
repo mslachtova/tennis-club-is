@@ -64,22 +64,6 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    void createNullTelephoneNumber() {
-        assertThrows(DataAccessException.class, () -> {
-            User user = new User(null,"John Doe");
-            userDao.create(user);
-        });
-    }
-
-    @Test
-    void createNullName() {
-        assertThrows(DataAccessException.class, () -> {
-            User user = new User("758888994", null);
-            userDao.create(user);
-        });
-    }
-
-    @Test
     void createAlreadyExistingTelephoneNumber() {
         assertThrows(DataAccessException.class, () -> {
            User user = new User("745558238", "Jane Doe");

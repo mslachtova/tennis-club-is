@@ -100,27 +100,6 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    void createNullFrom() {
-        assertThrows(DataAccessException.class, () -> reservationDao.create(new Reservation(court1, null,
-                LocalDateTime.of(2022, 1, 6, 18, 0), GameType.DOUBLES, user2)));
-    }
-
-    @Test
-    void createNullTo() {
-        assertThrows(DataAccessException.class, () -> reservationDao.create(new Reservation(court1,
-                LocalDateTime.of(2022, 1, 6, 16, 30),
-                null, GameType.DOUBLES, user2)));
-    }
-
-    @Test
-    void createNullGameType() {
-        assertThrows(DataAccessException.class, () -> reservationDao.create(new Reservation(court1,
-                LocalDateTime.of(2022, 1, 6, 16, 30),
-                LocalDateTime.of(2022, 1, 6, 18, 0),
-                null, user2)));
-    }
-
-    @Test
     void findById() {
         assertThat(reservationDao.findById(reservation1.getId())).isEqualTo(reservation1);
     }

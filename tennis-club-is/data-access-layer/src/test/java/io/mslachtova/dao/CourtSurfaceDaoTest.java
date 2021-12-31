@@ -69,22 +69,6 @@ public class CourtSurfaceDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    void createNullSurfaceType() {
-        assertThrows(DataAccessException.class, () -> {
-            CourtSurface courtSurface = new CourtSurface(null, 160.0);
-            courtSurfaceDao.create(courtSurface);
-        });
-    }
-
-    @Test
-    void createExistingSurfaceType() {
-        assertThrows(DataAccessException.class, () -> {
-            CourtSurface courtSurface = new CourtSurface("hard", 160.0);
-            courtSurfaceDao.create(courtSurface);
-        });
-    }
-
-    @Test
     void createExistingEntity() {
         assertThrows(DataAccessException.class, () -> courtSurfaceDao.create(courtSurface1));
     }
