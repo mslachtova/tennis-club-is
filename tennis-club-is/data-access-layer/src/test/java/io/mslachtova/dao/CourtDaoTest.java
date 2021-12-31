@@ -76,14 +76,6 @@ public class CourtDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    void createNullCourtSurface() {
-        assertThrows(DataAccessException.class, () -> {
-           Court court = new Court();
-           courtDao.create(court);
-        });
-    }
-
-    @Test
     void findById() {
         assertThat(courtDao.findById(court1.getId())).isEqualTo(court1);
     }
