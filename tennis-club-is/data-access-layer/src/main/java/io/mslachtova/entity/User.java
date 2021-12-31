@@ -30,7 +30,7 @@ public class User {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy="reservation")
+    @OneToMany(mappedBy="user")
     private List<Reservation> reservations;
 
     public User() {

@@ -32,7 +32,7 @@ public class Court {
     @NotNull
     private CourtSurface courtSurface;
 
-    @OneToMany(mappedBy = "reservation")
+    @OneToMany(mappedBy = "court")
     private List<Reservation> reservations;
 
     public Court() {
