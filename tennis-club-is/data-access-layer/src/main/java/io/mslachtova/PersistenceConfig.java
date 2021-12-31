@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan
+@ComponentScan(basePackages = "io.mslachtova")
 public class PersistenceConfig {
     @Bean
     public JpaTransactionManager transactionManager() {
