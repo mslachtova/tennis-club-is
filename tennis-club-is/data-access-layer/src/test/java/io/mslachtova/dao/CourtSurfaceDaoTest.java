@@ -102,7 +102,7 @@ public class CourtSurfaceDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     void findByIdNonExistingId() {
-        assertThrows(DataAccessException.class, () -> courtSurfaceDao.findById(5L));
+        assertThat(courtSurfaceDao.findById(5L)).isNull();
     }
 
     @Test
