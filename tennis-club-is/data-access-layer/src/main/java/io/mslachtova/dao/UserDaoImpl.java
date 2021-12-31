@@ -4,6 +4,7 @@ import io.mslachtova.entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -32,9 +33,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByTelephoneNumber(String telephoneNumber) {
-        return em.createQuery("select u from User u where u.telephoneNumber = :telephoneNumber", User.class)
-                .setParameter("telephoneNumber", telephoneNumber)
-                .getSingleResult();
+        try {
+            return em.createQuery("select u from User u where u.telephoneNumber = :telephoneNumber", User.class)
+                    .setParameter("telephoneNumber", telephoneNumber)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
