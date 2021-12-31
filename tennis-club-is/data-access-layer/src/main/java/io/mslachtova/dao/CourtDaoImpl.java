@@ -4,6 +4,7 @@ import io.mslachtova.entity.Court;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -32,9 +33,13 @@ public class CourtDaoImpl implements CourtDao {
 
     @Override
     public Court findByCourtNumber(int courtNumber) {
-        return em.createQuery("select c from Court c where c.courtNumber = :courtNumber", Court.class)
-                .setParameter("courtNumber", courtNumber)
-                .getSingleResult();
+        try {
+            return em.createQuery("select c from Court c where c.courtNumber = :courtNumber", Court.class)
+                    .setParameter("courtNumber", courtNumber)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
