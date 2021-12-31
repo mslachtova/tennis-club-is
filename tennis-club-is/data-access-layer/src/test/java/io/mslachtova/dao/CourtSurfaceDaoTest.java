@@ -112,11 +112,11 @@ public class CourtSurfaceDaoTest extends AbstractTestNGSpringContextTests {
         assertThat(foundCourtSurfaces).contains(courtSurface1, courtSurface2);
     }
 
-    @Test
+    @Test(dependsOnMethods = "findById")
     void update() {
         String newCourtSurface = "green";
         courtSurface1.setSurfaceType(newCourtSurface);
-        courtSurfaceDao.update(courtSurface2);
+        courtSurfaceDao.update(courtSurface1);
         assertThat(courtSurfaceDao.findById(courtSurface1.getId()).getSurfaceType()).isEqualTo(newCourtSurface);
     }
 }
