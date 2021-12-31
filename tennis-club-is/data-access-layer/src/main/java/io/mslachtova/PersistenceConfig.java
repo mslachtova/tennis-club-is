@@ -11,6 +11,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.sql.DataSource;
 
@@ -49,4 +50,8 @@ public class PersistenceConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
+    @Bean
+    public LocalValidatorFactoryBean localValidatorFactoryBean() {
+        return new LocalValidatorFactoryBean();
+    }
 }
