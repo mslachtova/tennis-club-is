@@ -111,7 +111,7 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests {
         assertThat(foundReservations).contains(reservation2, reservation1);
     }
 
-    @Test
+    @Test(dependsOnMethods = "findById")
     void update() {
         LocalDateTime newTo = LocalDateTime.of(2022, 1, 7, 12, 30);
         reservation2.setTo(newTo);

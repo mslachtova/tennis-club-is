@@ -93,7 +93,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
         assertThat(userDao.findByTelephoneNumber("999999999")).isNull();
     }
 
-    @Test
+    @Test(dependsOnMethods = "findById")
     void update() {
         String newName = "Josh Taylor";
         user2.setName(newName);

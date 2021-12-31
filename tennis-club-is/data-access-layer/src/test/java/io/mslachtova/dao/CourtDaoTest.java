@@ -105,7 +105,7 @@ public class CourtDaoTest extends AbstractTestNGSpringContextTests {
         assertThat(courtDao.findByCourtNumber(6)).isNull();
     }
 
-    @Test
+    @Test(dependsOnMethods = "findById")
     void update() {
         court1.setCourtSurface(courtSurface2);
         courtDao.update(court1);
