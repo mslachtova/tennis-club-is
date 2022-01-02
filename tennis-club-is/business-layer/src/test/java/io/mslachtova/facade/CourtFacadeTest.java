@@ -19,6 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -53,6 +54,13 @@ class CourtFacadeTest {
     void create() {
         courtFacade.create(courtDto);
         verify(courtService).create(court);
+    }
+
+    @Test
+    void createNullCourtSurface() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> courtFacade
+                .create(new CourtDto(null)));
+        assertThat(exception.getMessage()).isEqualTo("The court surface cannot be null.");
     }
 
     @Test

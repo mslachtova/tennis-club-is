@@ -12,6 +12,13 @@ public class CourtDto {
     private CourtSurfaceDto courtSurface;
     private List<ReservationDto> reservations;
 
+    public CourtDto() {
+    }
+
+    public CourtDto(CourtSurfaceDto courtSurface) {
+        this.courtSurface = courtSurface;
+    }
+
     public Long getId() {
         return id;
     }
