@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,7 +34,7 @@ public class Court {
     private CourtSurface courtSurface;
 
     @OneToMany(mappedBy = "court")
-    private List<Reservation> reservations;
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Court() {
         courtNumber = assignCourtNumber();
