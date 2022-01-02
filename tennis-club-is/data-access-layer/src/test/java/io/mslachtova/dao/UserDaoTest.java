@@ -3,12 +3,12 @@ package io.mslachtova.dao;
 import io.mslachtova.PersistenceConfig;
 import io.mslachtova.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -20,7 +20,6 @@ import java.util.List;
 import static io.mslachtova.dao.TestHelper.getAlice;
 import static io.mslachtova.dao.TestHelper.getBob;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertThrows;
 
 /**
  * @author Monika Slachtova
@@ -50,6 +49,18 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
             user2 = getBob();
             em.persist(user2);
 
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createQuery("delete from User").executeUpdate();
             em.getTransaction().commit();
         } finally {
             em.close();

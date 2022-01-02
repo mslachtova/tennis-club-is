@@ -9,6 +9,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -50,6 +51,18 @@ public class CourtSurfaceDaoTest extends AbstractTestNGSpringContextTests {
             courtSurface2 = getHardCourtSurface();
             em.persist(courtSurface2);
 
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createQuery("delete from CourtSurface").executeUpdate();
             em.getTransaction().commit();
         } finally {
             em.close();

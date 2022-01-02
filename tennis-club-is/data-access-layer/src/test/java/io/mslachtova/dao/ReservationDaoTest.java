@@ -12,6 +12,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -83,6 +84,21 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests {
             em.persist(reservation1);
             em.persist(reservation2);
 
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createQuery("delete from Reservation").executeUpdate();
+            em.createQuery("delete from Court").executeUpdate();
+            em.createQuery("delete from CourtSurface").executeUpdate();
+            em.createQuery("delete from User").executeUpdate();
             em.getTransaction().commit();
         } finally {
             em.close();
