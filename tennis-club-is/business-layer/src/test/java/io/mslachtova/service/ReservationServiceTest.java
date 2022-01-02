@@ -46,9 +46,11 @@ class ReservationServiceTest {
         CourtSurface courtSurface = new CourtSurface("grass", 200.0);
         Court court = new Court(courtSurface);
         User user = new User("759888221", "Alice Smith");
-        reservation = new Reservation(court, LocalDateTime.of(2022, 1, 3, 14, 0),
+        reservation = new Reservation(LocalDateTime.of(2022, 1, 3, 14, 0),
                 LocalDateTime.of(2022, 1, 3, 15, 30),
-                GameType.SINGLES, user);
+                GameType.SINGLES);
+        court.addReservation(reservation);
+        user.addReservation(reservation);
     }
 
     @Test

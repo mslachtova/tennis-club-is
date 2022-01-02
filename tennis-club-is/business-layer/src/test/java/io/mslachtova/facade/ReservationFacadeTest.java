@@ -79,13 +79,15 @@ class ReservationFacadeTest {
         court = new Court(courtSurface);
         user1 = new User("777777777", "Alex Taylor");
         user2 = new User("999999999", "Bob Taylor");
-        reservation1 = new Reservation(court, LocalDateTime.of(2022, 3, 2, 14, 15),
-                LocalDateTime.of(2022, 3, 2, 14, 45), GameType.DOUBLES, user1);
+        reservation1 = new Reservation(LocalDateTime.of(2022, 3, 2, 14, 15),
+                LocalDateTime.of(2022, 3, 2, 14, 45), GameType.DOUBLES);
         reservationDto1 = beanMapper.mapTo(reservation1, ReservationDto.class);
-        reservation2 = new Reservation(court, LocalDateTime.of(2022, 3, 2, 15, 15),
-                LocalDateTime.of(2022, 3, 2, 16, 45), GameType.SINGLES, user2);
+        reservation2 = new Reservation(LocalDateTime.of(2022, 3, 2, 15, 15),
+                LocalDateTime.of(2022, 3, 2, 16, 45), GameType.SINGLES);
         reservationDto2 = beanMapper.mapTo(reservation2, ReservationDto.class);
         court.setReservations(List.of(reservation1, reservation2));
+        court.addReservation(reservation1);
+        court.addReservation(reservation2);
         user1.addReservation(reservation1);
         user2.addReservation(reservation2);
     }
