@@ -76,18 +76,18 @@ class ReservationFacadeTest {
         user2 = new User("999999999", "Bob Taylor");
         reservation1 = new Reservation(LocalDateTime.of(2022, 3, 2, 14, 15),
                 LocalDateTime.of(2022, 3, 2, 14, 45), GameType.DOUBLES);
-        reservationDto1 = beanMapper.mapTo(reservation1, ReservationDto.class);
         reservation2 = new Reservation(LocalDateTime.of(2022, 3, 2, 15, 15),
                 LocalDateTime.of(2022, 3, 2, 16, 45), GameType.SINGLES);
-        reservationDto2 = beanMapper.mapTo(reservation2, ReservationDto.class);
         court.addReservation(reservation1);
         court.addReservation(reservation2);
         user1.addReservation(reservation1);
         user2.addReservation(reservation2);
+        reservationDto1 = beanMapper.mapTo(reservation1, ReservationDto.class);
+        reservationDto2 = beanMapper.mapTo(reservation2, ReservationDto.class);
 
-        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
-        when(userService.findByTelephoneNumber(user1.getTelephoneNumber())).thenReturn(user1);
-        when(userService.findByTelephoneNumber(user2.getTelephoneNumber())).thenReturn(user2);
+//        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
+//        when(userService.findByTelephoneNumber(user1.getTelephoneNumber())).thenReturn(user1);
+//        when(userService.findByTelephoneNumber(user2.getTelephoneNumber())).thenReturn(user2);
     }
 
     @Test
@@ -251,21 +251,26 @@ class ReservationFacadeTest {
 
     private ReservationCreateDto getReservationCreateDto() {
         ReservationCreateDto reservationCreateDto = new ReservationCreateDto();
-        reservationCreateDto.setCourtNumber(reservation1.getCourt().getCourtNumber());
-        reservationCreateDto.setFrom(reservation1.getFrom());
-        reservationCreateDto.setTo(reservation1.getTo());
-        reservationCreateDto.setGameType(reservation1.getGameType());
-        reservationCreateDto.setTelephoneNumber(reservation1.getUser().getTelephoneNumber());
-        reservationCreateDto.setName(reservation1.getUser().getName());
+        reservationCreateDto.setCourtNumber(court.getCourtNumber());
+        reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 17, 30));
+        reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 19, 0));
+        reservationCreateDto.setGameType(GameType.DOUBLES);
+        reservationCreateDto.setTelephoneNumber(user1.getTelephoneNumber());
+        reservationCreateDto.setName(user1.getName());
         return reservationCreateDto;
     }
 
     private void assertCreateReservation(ReservationCreateDto reservationCreateDto) {
         Reservation reservation = beanMapper.mapTo(reservationCreateDto, Reservation.class);
         reservation.setId(3L);
-        when(reservationService.create(reservation)).thenReturn(reservation);
+
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
+        when(userService.findByTelephoneNumber(user1.getTelephoneNumber())).thenReturn(user1);
+        when(reservationService.create(any(Reservation.class))).thenReturn(reservation);
 
         Long newId = reservationFacade.create(reservationCreateDto);
+        reservation.setCourt(court);
+        reservation.setUser(user1);
 
         verify(courtService).update(court);
         verify(userService).update(user1);
