@@ -106,6 +106,8 @@ class ReservationFacadeTest {
 
     @Test
     void createExistingTelephoneNumberDifferentName() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
+        when(userService.findByTelephoneNumber(user1.getTelephoneNumber())).thenReturn(user1);
         User user = new User("777777777", "Josh Smith");
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setTelephoneNumber(user.getTelephoneNumber());
@@ -128,6 +130,7 @@ class ReservationFacadeTest {
 
     @Test
     void createFromEqualsTo() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 13, 15));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 13, 15));
@@ -139,6 +142,7 @@ class ReservationFacadeTest {
 
     @Test
     void createFromAfterTo() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 15));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 13, 15));
@@ -150,6 +154,7 @@ class ReservationFacadeTest {
 
     @Test
     void createNoCollisionEndBeforeFrom() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 13, 15));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 14, 15));
@@ -158,6 +163,7 @@ class ReservationFacadeTest {
 
     @Test
     void createNoCollisionStartAfterTo() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 45));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 15, 15));
@@ -166,6 +172,7 @@ class ReservationFacadeTest {
 
     @Test
     void createCollisionStartBeforeFromEndAfterTo() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 13, 0));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 15, 0));
@@ -176,6 +183,7 @@ class ReservationFacadeTest {
 
     @Test
     void createCollisionStartBeforeFromEndBeforeTo() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 20));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 14, 30));
@@ -186,6 +194,7 @@ class ReservationFacadeTest {
 
     @Test
     void createCollisionStartAfterFromEndBeforeTo() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 20));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 14, 30));
@@ -196,6 +205,7 @@ class ReservationFacadeTest {
 
     @Test
     void createCollisionStartBeforeToEndAfterTo() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 30));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 15, 0));
