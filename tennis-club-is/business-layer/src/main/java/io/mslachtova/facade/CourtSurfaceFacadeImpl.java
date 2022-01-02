@@ -26,6 +26,11 @@ public class CourtSurfaceFacadeImpl implements CourtSurfaceFacade {
     public void create(CourtSurfaceDto courtSurface) {
         if (courtSurface.getSurfaceType() == null)
             throw new IllegalArgumentException("The court surface type cannot be null.");
+        if (courtSurfaceService.findAll().stream()
+                .anyMatch(cs -> cs.getSurfaceType().equals(courtSurface.getSurfaceType()))) {
+            throw new IllegalArgumentException("The court surface type with name " + courtSurface.getSurfaceType()
+                    + " already exists.");
+        }
         courtSurfaceService.create(beanMapper.mapTo(courtSurface, CourtSurface.class));
     }
 
