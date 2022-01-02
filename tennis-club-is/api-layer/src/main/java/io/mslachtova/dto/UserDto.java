@@ -12,6 +12,14 @@ public class UserDto {
     private String name;
     private List<ReservationDto> reservations;
 
+    public UserDto() {
+    }
+
+    public UserDto(String telephoneNumber, String name) {
+        this.telephoneNumber = telephoneNumber;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

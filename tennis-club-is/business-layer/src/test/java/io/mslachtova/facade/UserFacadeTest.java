@@ -18,6 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -52,6 +53,27 @@ class UserFacadeTest {
     void create() {
         userFacade.create(userDto);
         verify(userService).create(user);
+    }
+
+    @Test
+    void createNullTelephoneNumber() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> userFacade
+                .create(new UserDto(null, "Alex Jones")));
+        assertThat(exception.getMessage()).isEqualTo("The telephone number cannot be null.");
+    }
+
+    @Test
+    void createNullName() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> userFacade
+                .create(new UserDto("111111111", null)));
+        assertThat(exception.getMessage()).isEqualTo("The name cannot be null.");
+    }
+
+    @Test
+    void createAlreadyExistingTelephoneNumber() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> userFacade
+                .create(new UserDto("756988452","John Doe")));
+        assertThat(exception.getMessage()).isEqualTo("The user with telephone number 756988452 already exists.");
     }
 
     @Test
