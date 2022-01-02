@@ -39,7 +39,7 @@ public class ReservationFacadeImpl implements ReservationFacade {
         Court court = courtService.findByCourtNumber(reservation.getCourtNumber());
         checkCourt(court, reservation);
         User user = userService.findByTelephoneNumber(reservation.getTelephoneNumber());
-        checkUser(user, reservation);
+        user = checkUser(user, reservation);
         Reservation r = beanMapper.mapTo(reservation, Reservation.class);
         court.addReservation(r);
         user.addReservation(r);
@@ -100,7 +100,7 @@ public class ReservationFacadeImpl implements ReservationFacade {
         }
     }
 
-    private void checkUser(User user, ReservationCreateDto reservation) {
+    private User checkUser(User user, ReservationCreateDto reservation) {
         if (user != null && !user.getName().equals(reservation.getName()))
             throw new IllegalArgumentException("Telephone number " + reservation.getTelephoneNumber()
                     + "has already been attached to name " + user.getName() + ".");
@@ -110,5 +110,6 @@ public class ReservationFacadeImpl implements ReservationFacade {
             user.setName(reservation.getName());
             userService.create(user);
         }
+        return user;
     }
 }
