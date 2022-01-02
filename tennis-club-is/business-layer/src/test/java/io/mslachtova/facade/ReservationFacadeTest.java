@@ -243,6 +243,7 @@ class ReservationFacadeTest {
 
     @Test
     void getReservationsByCourtNumber() {
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
         List<ReservationDto> foundReservations = reservationFacade.getReservationsByCourtNumber(court.getCourtNumber());
         assertThat(foundReservations.size()).isEqualTo(2);
         assertThat(foundReservations).contains(reservationDto1, reservationDto2);
@@ -250,6 +251,7 @@ class ReservationFacadeTest {
 
     @Test
     void getReservationsByTelephoneNumber() {
+        when(userService.findByTelephoneNumber(user2.getTelephoneNumber())).thenReturn(user2);
         List<ReservationDto> foundReservations = reservationFacade
                 .getReservationsByTelephoneNumber(user2.getTelephoneNumber());
         assertThat(foundReservations.size()).isEqualTo(1);
