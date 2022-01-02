@@ -2,12 +2,11 @@ package io.mslachtova;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
-import io.mslachtova.PersistenceConfig;
+import com.github.dozermapper.core.loader.api.BeanMappingBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import io.mslachtova.service.BeanMapperImpl;
 
 /**
  * Service configuration
@@ -16,11 +15,19 @@ import io.mslachtova.service.BeanMapperImpl;
  */
 @Configuration
 @Import(PersistenceConfig.class)
-@ComponentScan(basePackageClasses = {BeanMapperImpl.class})
+@ComponentScan()
 public class ServiceConfig {
     @Bean
-    public Mapper dozerBean() {
-        Mapper dozerBean = DozerBeanMapperBuilder.buildDefault();
-        return dozerBean;
+    public Mapper dozer(){
+        Mapper mapper = DozerBeanMapperBuilder.create()
+                .withMappingBuilder(new DozerCustomConfig())
+                .build();
+        return mapper;
+    }
+
+    public class DozerCustomConfig extends BeanMappingBuilder {
+        @Override
+        protected void configure() {
+        }
     }
 }

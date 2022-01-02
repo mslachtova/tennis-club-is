@@ -15,12 +15,8 @@ import java.util.List;
 public class ReservationServiceImpl implements ReservationService {
     public static double DOUBLES_PRICE_MULTIPLICATION = 1.5;
 
-    private final ReservationDao reservationDao;
-
     @Autowired
-    public ReservationServiceImpl(ReservationDao reservationDao) {
-        this.reservationDao = reservationDao;
-    }
+    private ReservationDao reservationDao;
 
     @Override
     public Reservation create(Reservation reservation) {

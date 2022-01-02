@@ -16,15 +16,11 @@ import java.util.List;
 @Service
 @Transactional
 public class UserFacadeImpl implements UserFacade {
-    private final UserService userService;
-
-    private final BeanMapper beanMapper;
+    @Autowired
+    private UserService userService;
 
     @Autowired
-    public UserFacadeImpl(UserService userService, BeanMapper beanMapper) {
-        this.userService = userService;
-        this.beanMapper = beanMapper;
-    }
+    private BeanMapper beanMapper;
 
     @Override
     public void create(UserDto user) {

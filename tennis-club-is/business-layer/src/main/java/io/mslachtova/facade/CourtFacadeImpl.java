@@ -16,15 +16,11 @@ import java.util.List;
 @Service
 @Transactional
 public class CourtFacadeImpl implements CourtFacade {
-    private final CourtService courtService;
-
-    private final BeanMapper beanMapper;
+    @Autowired
+    private CourtService courtService;
 
     @Autowired
-    public CourtFacadeImpl(CourtService courtService, BeanMapper beanMapper) {
-        this.courtService = courtService;
-        this.beanMapper = beanMapper;
-    }
+    private BeanMapper beanMapper;
 
     @Override
     public void create(CourtDto court) {

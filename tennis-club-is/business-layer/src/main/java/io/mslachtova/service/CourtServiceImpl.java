@@ -12,12 +12,8 @@ import java.util.List;
  */
 @Service
 public class CourtServiceImpl implements CourtService {
-    private final CourtDao courtDao;
-
     @Autowired
-    public CourtServiceImpl(CourtDao courtDao) {
-        this.courtDao = courtDao;
-    }
+    private CourtDao courtDao;
 
     @Override
     public void create(Court court) {

@@ -50,7 +50,7 @@ class CourtSurfaceServiceTest {
     @Test
     void findById() {
         when(courtSurfaceDao.findById(1L)).thenReturn(courtSurface);
-        assertThat(courtSurfaceDao.findById(1L)).isEqualTo(courtSurface);
+        assertThat(courtSurfaceService.findById(1L)).isEqualTo(courtSurface);
     }
 
     @Test
