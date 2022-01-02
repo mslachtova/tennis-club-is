@@ -24,6 +24,8 @@ public class CourtFacadeImpl implements CourtFacade {
 
     @Override
     public void create(CourtDto court) {
+        if (court.getCourtSurface() == null)
+            throw new IllegalArgumentException("The court surface cannot be null.");
         courtService.create(beanMapper.mapTo(court, Court.class));
     }
 
