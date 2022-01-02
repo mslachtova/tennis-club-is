@@ -2,6 +2,7 @@ package io.mslachtova.service;
 
 import com.github.dozermapper.core.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * @author Monika Slachtova
  */
+@Service
 public class BeanMapperImpl implements BeanMapper {
     private final Mapper dozer;
 
