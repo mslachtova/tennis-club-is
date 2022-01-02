@@ -7,7 +7,6 @@ import io.mslachtova.entity.Reservation;
 import io.mslachtova.entity.User;
 import io.mslachtova.enums.GameType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -27,7 +26,6 @@ import static io.mslachtova.dao.TestHelper.getBob;
 import static io.mslachtova.dao.TestHelper.getGrassCourtSurface;
 import static io.mslachtova.dao.TestHelper.getHardCourtSurface;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertThrows;
 
 /**
  * @author Monika Slachtova
@@ -58,29 +56,31 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests {
             em.getTransaction().begin();
 
             CourtSurface courtSurface1 = getGrassCourtSurface();
-            em.persist(courtSurface1);
             CourtSurface courtSurface2 = getHardCourtSurface();
-            em.persist(courtSurface2);
 
             court1 = new Court(courtSurface1);
-            em.persist(court1);
             court2 = new Court(courtSurface2);
-            em.persist(court2);
 
             user1 = getAlice();
-            em.persist(user1);
             user2 = getBob();
-            em.persist(user2);
 
-            reservation1 = new Reservation(court1,
-                    LocalDateTime.of(2022, 1, 5, 10, 30),
-                    LocalDateTime.of(2022, 1, 5, 11, 30),
-                    GameType.DOUBLES, user2);
+            reservation1 = new Reservation(LocalDateTime.of(2022, 1, 5, 10, 30),
+                    LocalDateTime.of(2022, 1, 5, 11, 30), GameType.DOUBLES);
+            reservation2 = new Reservation(LocalDateTime.of(2022, 1, 7, 10, 30),
+                    LocalDateTime.of(2022, 1, 7, 12, 0), GameType.SINGLES);
+
+            court1.addReservation(reservation1);
+            user2.addReservation(reservation1);
+            court2.addReservation(reservation2);
+            user1.addReservation(reservation2);
+
+            em.persist(courtSurface1);
+            em.persist(courtSurface2);
+            em.persist(court1);
+            em.persist(court2);
+            em.persist(user1);
+            em.persist(user2);
             em.persist(reservation1);
-            reservation2 = new Reservation(court2,
-                    LocalDateTime.of(2022, 1, 7, 10, 30),
-                    LocalDateTime.of(2022, 1, 7, 12, 0),
-                    GameType.SINGLES, user1);
             em.persist(reservation2);
 
             em.getTransaction().commit();
@@ -91,10 +91,10 @@ public class ReservationDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test(dependsOnMethods = "findById")
     void create() {
-        Reservation reservation = new Reservation(court2,
-                LocalDateTime.of(2022, 1, 10, 10, 30),
-                LocalDateTime.of(2022, 2, 1, 9, 0),
-                GameType.SINGLES, user1);
+        Reservation reservation = new Reservation(LocalDateTime.of(2022, 1, 10, 10, 30),
+                LocalDateTime.of(2022, 2, 1, 9, 0), GameType.SINGLES);
+        court2.addReservation(reservation);
+        user1.addReservation(reservation);
         reservationDao.create(reservation);
         assertThat(reservationDao.findById(reservation.getId())).isEqualTo(reservation);
     }

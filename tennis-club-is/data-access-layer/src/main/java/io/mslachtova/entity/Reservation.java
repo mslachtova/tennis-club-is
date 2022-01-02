@@ -43,13 +43,10 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Court court, @NotNull LocalDateTime from, @NotNull LocalDateTime to, @NotNull GameType gameType,
-                       User user) {
-        this.court = court;
+    public Reservation(@NotNull LocalDateTime from, @NotNull LocalDateTime to, @NotNull GameType gameType) {
         this.from = from;
         this.to = to;
         this.gameType = gameType;
-        this.user = user;
     }
 
     public Long getId() {
