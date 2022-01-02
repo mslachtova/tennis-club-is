@@ -36,9 +36,8 @@ class UserFacadeTest {
     @Autowired
     private BeanMapper beanMapper;
 
-    @Autowired
     @InjectMocks
-    private UserFacade userFacade;
+    private UserFacade userFacade = new UserFacadeImpl();
 
     private User user;
     private UserDto userDto;

@@ -57,9 +57,8 @@ class ReservationFacadeTest {
     @Autowired
     private BeanMapper beanMapper;
 
-    @Autowired
     @InjectMocks
-    private ReservationFacade reservationFacade;
+    private ReservationFacade reservationFacade = new ReservationFacadeImpl();
 
     private Court court;
     private User user1;

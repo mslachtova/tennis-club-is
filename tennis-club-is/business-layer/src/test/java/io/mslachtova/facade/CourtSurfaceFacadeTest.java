@@ -37,9 +37,8 @@ class CourtSurfaceFacadeTest {
     @Autowired
     private BeanMapper beanMapper;
 
-    @Autowired
     @InjectMocks
-    private CourtSurfaceFacade courtSurfaceFacade;
+    private CourtSurfaceFacade courtSurfaceFacade = new CourtSurfaceFacadeImpl();
 
     private CourtSurface courtSurface;
     private CourtSurfaceDto courtSurfaceDto;
