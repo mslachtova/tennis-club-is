@@ -70,10 +70,6 @@ class ReservationFacadeTest {
 
     @BeforeEach
     void setUp() {
-        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
-        when(userService.findByTelephoneNumber(user1.getTelephoneNumber())).thenReturn(user1);
-        when(userService.findByTelephoneNumber(user2.getTelephoneNumber())).thenReturn(user2);
-
         CourtSurface courtSurface = new CourtSurface("clay", 160.0);
         court = new Court(courtSurface);
         user1 = new User("777777777", "Alex Taylor");
@@ -84,11 +80,14 @@ class ReservationFacadeTest {
         reservation2 = new Reservation(LocalDateTime.of(2022, 3, 2, 15, 15),
                 LocalDateTime.of(2022, 3, 2, 16, 45), GameType.SINGLES);
         reservationDto2 = beanMapper.mapTo(reservation2, ReservationDto.class);
-        court.setReservations(List.of(reservation1, reservation2));
         court.addReservation(reservation1);
         court.addReservation(reservation2);
         user1.addReservation(reservation1);
         user2.addReservation(reservation2);
+
+        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
+        when(userService.findByTelephoneNumber(user1.getTelephoneNumber())).thenReturn(user1);
+        when(userService.findByTelephoneNumber(user2.getTelephoneNumber())).thenReturn(user2);
     }
 
     @Test
