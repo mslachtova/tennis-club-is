@@ -39,7 +39,8 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public UserDto findByTelephoneNumber(String telephoneNumber) {
-        return null;
+        User user = userService.findByTelephoneNumber(telephoneNumber);
+        return  user != null ? beanMapper.mapTo(user, UserDto.class) : null;
     }
 
     @Override
