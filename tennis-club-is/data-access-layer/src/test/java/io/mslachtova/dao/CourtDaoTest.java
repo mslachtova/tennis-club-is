@@ -4,7 +4,6 @@ import io.mslachtova.PersistenceConfig;
 import io.mslachtova.entity.Court;
 import io.mslachtova.entity.CourtSurface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -22,7 +21,6 @@ import java.util.List;
 import static io.mslachtova.dao.TestHelper.getGrassCourtSurface;
 import static io.mslachtova.dao.TestHelper.getHardCourtSurface;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertThrows;
 
 
 /**
