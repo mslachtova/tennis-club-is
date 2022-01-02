@@ -63,6 +63,7 @@ class ReservationFacadeTest {
     private Court court;
     private User user1;
     private User user2;
+    private User newUser;
     private Reservation reservation1;
     private ReservationDto reservationDto1;
     private Reservation reservation2;
@@ -84,27 +85,23 @@ class ReservationFacadeTest {
         user2.addReservation(reservation2);
         reservationDto1 = beanMapper.mapTo(reservation1, ReservationDto.class);
         reservationDto2 = beanMapper.mapTo(reservation2, ReservationDto.class);
-
-//        when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
-//        when(userService.findByTelephoneNumber(user1.getTelephoneNumber())).thenReturn(user1);
-//        when(userService.findByTelephoneNumber(user2.getTelephoneNumber())).thenReturn(user2);
     }
 
     @Test
     void createExistingTelephoneNumberSameName() {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
-        assertCreateReservation(reservationCreateDto);
+        assertCreateReservation(reservationCreateDto,true);
         verify(userService, never()).create(any(User.class));
     }
 
     @Test
     void createNewTelephoneNumber() {
-        User user = new User("888888888", "Josh Smith");
+        newUser = new User("888888888", "Josh Smith");
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
-        reservationCreateDto.setTelephoneNumber(user.getTelephoneNumber());
-        reservationCreateDto.setName(user.getName());
-        assertCreateReservation(reservationCreateDto);
-        verify(userService).create(user);
+        reservationCreateDto.setTelephoneNumber(newUser.getTelephoneNumber());
+        reservationCreateDto.setName(newUser.getName());
+        assertCreateReservation(reservationCreateDto,false);
+        verify(userService).create(newUser);
     }
 
     @Test
@@ -156,7 +153,7 @@ class ReservationFacadeTest {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 13, 15));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 14, 15));
-        assertCreateReservation(reservationCreateDto);
+        assertCreateReservation(reservationCreateDto,true);
     }
 
     @Test
@@ -164,7 +161,7 @@ class ReservationFacadeTest {
         ReservationCreateDto reservationCreateDto = getReservationCreateDto();
         reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 14, 45));
         reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 15, 15));
-        assertCreateReservation(reservationCreateDto);
+        assertCreateReservation(reservationCreateDto,true);
     }
 
     @Test
@@ -260,22 +257,23 @@ class ReservationFacadeTest {
         return reservationCreateDto;
     }
 
-    private void assertCreateReservation(ReservationCreateDto reservationCreateDto) {
+    private void assertCreateReservation(ReservationCreateDto reservationCreateDto, boolean userExists) {
         Reservation reservation = beanMapper.mapTo(reservationCreateDto, Reservation.class);
         reservation.setId(3L);
+        User user = userExists ? user1 : newUser;
 
         when(courtService.findByCourtNumber(court.getCourtNumber())).thenReturn(court);
-        when(userService.findByTelephoneNumber(user1.getTelephoneNumber())).thenReturn(user1);
+        if (userExists) when(userService.findByTelephoneNumber(user1.getTelephoneNumber())).thenReturn(user1);
         when(reservationService.create(any(Reservation.class))).thenReturn(reservation);
 
         Long newId = reservationFacade.create(reservationCreateDto);
         reservation.setCourt(court);
-        reservation.setUser(user1);
+        reservation.setUser(user);
 
         verify(courtService).update(court);
-        verify(userService).update(user1);
+        verify(userService).update(user);
         assertThat(court.getReservations()).contains(reservation1, reservation2, reservation);
-        assertThat(user1.getReservations()).contains(reservation1, reservation);
+        if (userExists) assertThat(user.getReservations()).contains(reservation1, reservation);
         assertThat(newId).isEqualTo(3L);
     }
 }
