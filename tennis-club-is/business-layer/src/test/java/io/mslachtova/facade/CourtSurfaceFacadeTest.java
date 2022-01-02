@@ -58,8 +58,9 @@ class CourtSurfaceFacadeTest {
 
     @Test
     void createNullSurfaceType() {
-        assertThrows(IllegalArgumentException.class, () -> courtSurfaceFacade
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> courtSurfaceFacade
                 .create(new CourtSurfaceDto(null, 200.0)));
+        assertThat(exception.getMessage()).isEqualTo("The court surface type cannot be null.");
     }
 
     @Test

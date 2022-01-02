@@ -24,6 +24,8 @@ public class CourtSurfaceFacadeImpl implements CourtSurfaceFacade {
 
     @Override
     public void create(CourtSurfaceDto courtSurface) {
+        if (courtSurface.getSurfaceType() == null)
+            throw new IllegalArgumentException("The court surface type cannot be null.");
         courtSurfaceService.create(beanMapper.mapTo(courtSurface, CourtSurface.class));
     }
 
