@@ -10,6 +10,14 @@ public class CourtSurfaceDto {
     private String surfaceType;
     private double price;
 
+    public CourtSurfaceDto() {
+    }
+
+    public CourtSurfaceDto(String surfaceType, double price) {
+        this.surfaceType = surfaceType;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }
