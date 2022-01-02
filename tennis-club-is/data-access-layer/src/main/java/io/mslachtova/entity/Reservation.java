@@ -2,6 +2,7 @@ package io.mslachtova.entity;
 
 import io.mslachtova.enums.GameType;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,9 +28,11 @@ public class Reservation {
     @ManyToOne
     private Court court;
 
+    @Column(name="\"from\"")
     @NotNull
     private LocalDateTime from;
 
+    @Column(name="\"to\"")
     @NotNull
     private LocalDateTime to;
 
