@@ -28,7 +28,7 @@ public class CourtsController {
 
     /**
      * Get list of courts curl -i -X GET
-     * http://localhost:8080/rest/wines
+     * http://localhost:8080/rest/courts
      *
      * @return CourtDto
      */
