@@ -3,6 +3,8 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.mslachtova.ServiceConfig;
+import io.mslachtova.dto.CourtDto;
+import io.mslachtova.dto.UserDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import io.mslachtova.sample.SampleDataConfig;
+import rest.mixin.CourtDtoMixin;
+import rest.mixin.UserDtoMixin;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -47,6 +51,9 @@ public class RootWebContext implements WebMvcConfigurer {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH));
+
+        objectMapper.addMixIn(CourtDto.class, CourtDtoMixin.class);
+        objectMapper.addMixIn(UserDto.class, UserDtoMixin.class);
 
         objectMapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
 
