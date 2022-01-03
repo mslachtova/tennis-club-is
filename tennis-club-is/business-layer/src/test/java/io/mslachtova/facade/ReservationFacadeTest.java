@@ -58,7 +58,7 @@ class ReservationFacadeTest {
     private BeanMapper beanMapper;
 
     @InjectMocks
-    private ReservationFacade reservationFacade = new ReservationFacadeImpl();
+    private final ReservationFacade reservationFacade = new ReservationFacadeImpl();
 
     private Court court;
     private User user1;
