@@ -17,6 +17,19 @@ public class ReservationCreateDto {
     private String telephoneNumber;
     private String name;
 
+    public ReservationCreateDto() {
+    }
+
+    public ReservationCreateDto(int courtNumber, LocalDateTime from, LocalDateTime to, GameType gameType,
+                                String telephoneNumber, String name) {
+        this.courtNumber = courtNumber;
+        this.from = from;
+        this.to = to;
+        this.gameType = gameType;
+        this.telephoneNumber = telephoneNumber;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

@@ -215,6 +215,33 @@ class ReservationFacadeTest {
     }
 
     @Test
+    void createNullFrom() {
+        ReservationCreateDto reservationCreateDto = getReservationCreateDto();
+        reservationCreateDto.setFrom(null);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
+        assertThat(exception.getMessage()).isEqualTo("The from date cannot be null.");
+    }
+
+    @Test
+    void createNullTo() {
+        ReservationCreateDto reservationCreateDto = getReservationCreateDto();
+        reservationCreateDto.setTo(null);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
+        assertThat(exception.getMessage()).isEqualTo("The to date cannot be null.");
+    }
+
+    @Test
+    void createNullGameType() {
+        ReservationCreateDto reservationCreateDto = getReservationCreateDto();
+        reservationCreateDto.setGameType(null);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> reservationFacade
+                .create(reservationCreateDto));
+        assertThat(exception.getMessage()).isEqualTo("The game type cannot be null.");
+    }
+
+    @Test
     void findById() {
         when(reservationService.findById(4L)).thenReturn(reservation1);
         assertThat(reservationFacade.findById(4L)).isEqualTo(reservationDto1);
@@ -259,14 +286,10 @@ class ReservationFacadeTest {
     }
 
     private ReservationCreateDto getReservationCreateDto() {
-        ReservationCreateDto reservationCreateDto = new ReservationCreateDto();
-        reservationCreateDto.setCourtNumber(court.getCourtNumber());
-        reservationCreateDto.setFrom(LocalDateTime.of(2022, 3, 2, 17, 30));
-        reservationCreateDto.setTo(LocalDateTime.of(2022, 3, 2, 19, 0));
-        reservationCreateDto.setGameType(GameType.DOUBLES);
-        reservationCreateDto.setTelephoneNumber(user1.getTelephoneNumber());
-        reservationCreateDto.setName(user1.getName());
-        return reservationCreateDto;
+        return new ReservationCreateDto(court.getCourtNumber(),
+                LocalDateTime.of(2022, 3, 2, 17, 30),
+                LocalDateTime.of(2022, 3, 2, 19, 0),
+                GameType.DOUBLES, user1.getTelephoneNumber(), user1.getName());
     }
 
     private void assertCreateReservation(ReservationCreateDto reservationCreateDto, boolean userExists) {
