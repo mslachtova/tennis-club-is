@@ -45,7 +45,7 @@ public class ReservationsController {
 
     /**
      * Get reservations for a user with given telephone number curl -i -X GET
-     * http://localhost:8080/rest/reservations/telephone_number/758447228
+     * http://localhost:8080/rest/reservations/telephone_number/745558238
      *
      * @param telephoneNumber -- given telephone number
      * @return List<ReservationDto>
