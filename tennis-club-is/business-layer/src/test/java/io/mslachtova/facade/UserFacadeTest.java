@@ -71,6 +71,7 @@ class UserFacadeTest {
 
     @Test
     void createAlreadyExistingTelephoneNumber() {
+        when(userService.findByTelephoneNumber(user.getTelephoneNumber())).thenReturn(user);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> userFacade
                 .create(new UserDto("756988452","John Doe")));
         assertThat(exception.getMessage()).isEqualTo("The user with telephone number 756988452 already exists.");

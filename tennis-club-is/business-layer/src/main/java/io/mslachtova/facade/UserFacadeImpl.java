@@ -24,6 +24,13 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public void create(UserDto user) {
+        if (user.getTelephoneNumber() == null)
+            throw new IllegalArgumentException("The telephone number cannot be null.");
+        if (user.getName() == null)
+            throw new IllegalArgumentException("The name cannot be null.");
+        if (userService.findByTelephoneNumber(user.getTelephoneNumber()) != null)
+            throw new IllegalArgumentException("The user with telephone number " + user.getTelephoneNumber()
+                    + " already exists.");
         userService.create(beanMapper.mapTo(user, User.class));
     }
 
