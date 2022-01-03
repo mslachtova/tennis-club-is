@@ -36,6 +36,7 @@ public class ReservationFacadeImpl implements ReservationFacade {
 
     @Override
     public Long create(ReservationCreateDto reservation) {
+        checkNullParameters(reservation);
         Court court = courtService.findByCourtNumber(reservation.getCourtNumber());
         checkCourt(court, reservation);
         User user = userService.findByTelephoneNumber(reservation.getTelephoneNumber());
@@ -85,6 +86,15 @@ public class ReservationFacadeImpl implements ReservationFacade {
     public List<ReservationDto> getReservationsByTelephoneNumber(String telephoneNumber) {
         User user = userService.findByTelephoneNumber(telephoneNumber);
         return user == null ? null : beanMapper.mapTo(user.getReservations(), ReservationDto.class);
+    }
+
+    private void checkNullParameters(ReservationCreateDto reservation) {
+        if (reservation.getFrom() == null)
+            throw new IllegalArgumentException("The from date cannot be null.");
+        if (reservation.getTo() == null)
+            throw new IllegalArgumentException("The to date cannot be null.");
+        if (reservation.getGameType() == null)
+            throw new IllegalArgumentException("The game type cannot be null.");
     }
 
     private void checkCourt(Court court, ReservationCreateDto reservation) {
